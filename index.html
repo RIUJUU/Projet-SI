@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Données sur la plante</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			// Récupère les données du dernier enregistrement sur le canal ThingSpeak
+			$.getJSON('https://api.thingspeak.com/channels/{72L9M9KCN5HXN620}/feed/last.json?api_key={72L9M9KCN5HXN620}', function(data) {
+				var field1 = data.field1;
+				var field2 = data.field2;
+				var field3 = data.field3;
+				var field4 = data.field4;
+
+				// Affiche les données sur la page web
+				$('#field1').text(field1);
+				$('#field2').text(field2);
+				$('#field3').text(field3);
+                $('#field4').text(field4);
+			});
+		});
+	</script>
+</head>
+<body> 
+
+<p> <img src="Esp32.png">
+    <br>
+    <h3>Données provenant de ThingSpeak </h3>
+	<table id="myTable" summary="Données pour la plante">
+		<tr>
+			<th>Température</th>
+			<th>Humidité de l'air</th>
+			<th>Luminosité</th>
+			<th>Humidité de la terre</th>
+		</tr>
+		<tr>
+			<td id="field1"></td>
+			<td id="field2"></td>
+			<td id="field3"></td>
+			<td id="field4"></td>
+		</tr>
+	</table>
+</p></body>
+</html>
