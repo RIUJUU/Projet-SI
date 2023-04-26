@@ -5,12 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Données sur la plante</title>
-    <link rel="stylesheet" href="style.css"> 
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 1.2em;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 2px solid white;
+        }
+        th {
+            background-color: white;
+            color: black;
+        }
+    </style> 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			// Récupère les données du dernier enregistrement sur le canal ThingSpeak
-			$.getJSON('https://api.thingspeak.com/channels/{2084867}/feed/last.json?api_key={72L9M9KCN5HXN620}', function(data) {
+			$.getJSON('https://api.thingspeak.com/channels/2084867/feed/last.json?api_key=72L9M9KCN5HXN620', function(data) {
 				var field1 = data.field1;
 				var field2 = data.field2;
 				var field3 = data.field3;
@@ -26,15 +48,13 @@
 	</script>
 </head>
 <body> 
-
-<p> <br>
     <h3>Données provenant de ThingSpeak: </h3>
-	<table id="myTable" summary="Données pour la plante">
+	<table>
 		<tr>
 			<th>Température</th>
-			<th>Humidité de l'air</th>
+			<th>Humidité</th>
 			<th>Luminosité</th>
-			<th>Humidité de la terre</th>
+			<th>Humidité du sol</th>
 		</tr>
 		<tr>
 			<td id="field1"></td>
@@ -43,5 +63,5 @@
 			<td id="field4"></td>
 		</tr>
 	</table>
-</p></body>
+</body>
 </html>
